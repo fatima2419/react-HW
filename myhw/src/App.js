@@ -65,8 +65,8 @@ function App() {
         <button onClick={resetInput}>resetInput</button> 
       </form> 
   
-    </div> 
-  ); 
+</div>
+  );
 } 
  
 export default App; 
