@@ -1,6 +1,5 @@
-import {
-  useState,
-  useRef
+import React, { useState } from 'react'; // Import React and other necessary components
+import { useRef
 } from "react"; 
 import "./App.css";
 
