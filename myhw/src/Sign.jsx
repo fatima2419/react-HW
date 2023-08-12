@@ -1,5 +1,6 @@
 import { useState } from "react";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 function Sign(){
     const [name,setName]=useState('fatima')
     const [email,setEmail]=useState('')
@@ -16,7 +17,11 @@ function Sign(){
     }
     const handlechangensubmit =(e)=>{
         console.log('you are in')
+        
     }
+   
+    const navigate=useNavigate();  
+    
 return(
     <>
     <form onSubmit={handlechangensubmit}>
@@ -35,7 +40,7 @@ return(
             <input type="password" name="password" value={password}
         onChange={handlechangepassword}/>
         </div>
-<button type="submit" >Submit</button>
+<button type="submit" onClick={()=>navigate("/Newcontext")} >Submit</button>
         </form></>
 )
 }
