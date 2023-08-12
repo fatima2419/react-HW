@@ -1,6 +1,8 @@
 
 import React, { useState } from 'react';
 import "./App.css";
+import heart from './1.png'
+import heartless from './2.png'
 
 function App() { 
   const cartoonname = [
@@ -10,9 +12,15 @@ function App() {
     'last air bender',
     'black clover'
   ];
+  const [img,setImg]=useState(new Array(cartoonname.length).fill(false));
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredItems, setFilteredItems] = useState(cartoonname);
 
+  const handlefav = (index) => {
+    const newFavorites = [...img];
+    newFavorites[index] = !newFavorites[index];
+    setImg(newFavorites);
+  };
   const handleSearch = (e) => {
     const searchTerm = e.target.value.toLowerCase();
     setSearchTerm(searchTerm);
@@ -38,8 +46,14 @@ function App() {
         {/* هنا سوينا ماب لان راح يدحل على الاري ماتي الجديد على كل ايلمن 
          بي ويطبق اوبريشن عليه ال ايتم ,هي ارو فنكسن راح تطبق على كل ايتم ب الاري الجديد  
          */}
-    {filteredItems.map((item) => (
-          <li>{item}</li>
+    {filteredItems.map((item, index) => (
+          <li key={index}>{item} {''} <img
+          src={img[index] ? heartless : heart}
+          alt='heart'
+          height="25px"
+          className='img'
+          onClick={() => handlefav(index)}
+        /></li>
         ))}
 </ul>
     </div>
