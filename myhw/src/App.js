@@ -15,7 +15,7 @@ function App() {
   const [img,setImg]=useState(new Array(cartoonname.length).fill(false));
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredItems, setFilteredItems] = useState(cartoonname);
-
+// 
   const handlefav = (index) => {
     const newFavorites = [...img];
     newFavorites[index] = !newFavorites[index];
