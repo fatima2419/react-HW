@@ -1,12 +1,12 @@
 
-import React from 'react';
+import {React} from 'react';
 import "./App.css";
-import Todo from './Todo';
+
 function App() { 
- 
+ const change=()=>{}
   return ( 
     <div >
-     <Todo/>
+      <input type='number' name='input1' onChange={change}/>
     </div>
     
   );
