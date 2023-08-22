@@ -1,63 +1,76 @@
-import React,{useState} from 'react';
-import { useNavigate } from "react-router-dom";
-export default function Newcontext() {
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useInfo } from './InfoContext';
 
-    const [name,setName]=useState('fatima')
-    const [age,setAge]=useState('')
-    const [diesees,setDiesees]=useState('')
-    const [medicine,setMedicine]=useState('')
-    const [notes,setNotes]=useState('')
-   
-    const handlechangename =(e)=>{
-        setName(e.target.value);
-    } 
-    const handlechangeAge =(e)=>{
-        setAge(e.target.value);
-    }
-    const handlechangeDiesees =(e)=>{
-        setDiesees(e.target.value);
-    }
-    const handlechangeMedicine =(e)=>{
-        setMedicine(e.target.value);
-    }
-    const handlechangeNotes =(e)=>{
-        setNotes(e.target.value);
-    }
-   
-    const navigate=useNavigate(); 
+export default function Newcontext() {
+  const navigate = useNavigate();
+  const { patientInfo, setPatientInfo } = useInfo();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setPatientInfo((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate('/Infopage');
+  };
+
   return (
     <div>
-  <h3>Patient form</h3>
-  <form >
+      <h3>Patient form</h3>
+      <form onSubmit={handleSubmit}>
         <div>
-            <label>Name</label>
-            <input type="text" name="name" onChange={handlechangename}
-     />
-        </div> 
-        <div>
-            <label>Age</label>
-            <input type="number" name="Age" onChange={handlechangeAge}
-      />
+          <label>Name</label>
+          <input
+            type="text"
+            name="name"
+            value={patientInfo.name}
+            onChange={handleChange}
+          />
         </div>
         <div>
-            <label>diesees</label>
-            <input type="text" name="diesees" 
-        />
+          <label>Age</label>
+          <input
+            type="number"
+            name="age"
+            value={patientInfo.age}
+            onChange={handleChange}
+          />
         </div>
         <div>
-            <label>medicine</label>
-            <input type="text" name="medicine" 
-        />
+          <label>Disease</label>
+          <input
+            type="text"
+            name="disease"
+            value={patientInfo.disease}
+            onChange={handleChange}
+          />
         </div>
         <div>
-            <label>notes</label>
-            <input type="text" name="notes" 
-        />
+          <label>Medicine</label>
+          <input
+            type="text"
+            name="medicine"
+            value={patientInfo.medicine}
+            onChange={handleChange}
+          />
         </div>
-        
-<button type="submit" onClick={()=>navigate("/Infopage")} >Submit</button>
-        </form>
+        <div>
+          <label>Notes</label>
+          <input
+            type="text"
+            name="notes"
+            value={patientInfo.notes}
+            onChange={handleChange}
+          />
+        </div>
+
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
 }
-

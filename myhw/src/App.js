@@ -1,22 +1,22 @@
-
 import React from 'react';
-import "./App.css";
-import {Route,Routes} from 'react-router-dom'
-import Sign from './Sign';
+import { Routes, Route } from 'react-router-dom';
 import Newcontext from './Newcontext';
 import Infopage from './Infopage';
-function App() { 
- 
-  return ( 
-    <div >
-      <Routes>
-        <Route path='/Sign' element={<Sign/>}/>
-        <Route path='/Newcontext' element={<Newcontext/>}/>
-        <Route path='/Infopage' element={<Infopage/>}/>
-      </Routes>
+import { InfoProvider } from './InfoContext';
+import Sign from './Sign';
+
+function App() {
+  return (
+    <div>
+      <InfoProvider>
+        <Routes>
+        <Route path="/sign" element={<Sign />} />
+          <Route path="/Newcontext" element={<Newcontext />} />
+          <Route path="/Infopage" element={<Infopage />} />
+        </Routes>
+      </InfoProvider>
     </div>
-    
   );
-} 
- 
-export default App; 
+}
+
+export default App;
